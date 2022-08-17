@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "730147c4-6d22-4920-8098-a60ad781c0cc",
+		"name": "RestaurantCRUDOperation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22765492"
+	},
+	"item": [
+		{
+			"name": "Get All Restaurant",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44335/Restaurant",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44335",
+					"path": [
+						"Restaurant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Restaurant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ресторан 4\",\r\n        \"openTime\": \"2022-01-01T10:00:00\",\r\n        \"closeTime\": \"2022-01-01T02:00:00\",\r\n        \"address\": \"ул.Ломоносова д.49\",\r\n        \"rating\": 5,\r\n        \"kitchenID\": \"ba8f2d48-b490-48cb-939f-7960dbd3919c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44335/Restaurant",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44335",
+					"path": [
+						"Restaurant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Restaurant",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44335/Restaurant/{ID}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44335",
+					"path": [
+						"Restaurant",
+						"{ID}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Restaurant",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Ресторан 3\",\r\n    \"address\":\"ул.Гагарина д.34\"\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44335/Restaurant/{ID}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44335",
+					"path": [
+						"Restaurant",
+						"{ID}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Restaurant (ID)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44335/Restaurant/{id}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44335",
+					"path": [
+						"Restaurant",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

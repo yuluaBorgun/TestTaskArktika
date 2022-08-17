@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "e5b420ff-3a64-4212-b4f2-a4a2aaf669ea",
+		"name": "KitchenCRUDOperation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22765492"
+	},
+	"item": [
+		{
+			"name": "Get All Kitchen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44335/Kitchen",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44335",
+					"path": [
+						"Kitchen"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Kitchen",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44335/Kitchen/{ID}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44335",
+					"path": [
+						"Kitchen",
+						"{ID}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Kitchen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nameKitchen\":\"Грузинская кухня\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44335/Kitchen",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44335",
+					"path": [
+						"Kitchen"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Kitchen",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nameKitchen\": \"Кавказская кухня\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44335/Kitchen/e4a466a6-f2f2-4a6b-937d-4b872c449330",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44335",
+					"path": [
+						"Kitchen",
+						"e4a466a6-f2f2-4a6b-937d-4b872c449330"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Kitchen {ID}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44335/Kitchen/{ID}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44335",
+					"path": [
+						"Kitchen",
+						"{ID}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -21,3 +21,6 @@ Del - [базовый url]/Kitchen/[id записи] - удаление запи
 Patch - [базовый url]/Kitchen/[id записи] - изменение записи по id. 
 ## DataFasades
 Для взаимодействия с базой данных реализованы классы "KitchenFasad" и "RestaurantFasad" данные классы реализуют интерфейс "ICRUDdbOperations".
+
+Папка "Project" содержит проект VisualStudio.
+Папка "PostmanСollection" содержит файлы коллекции запросов Postman.
