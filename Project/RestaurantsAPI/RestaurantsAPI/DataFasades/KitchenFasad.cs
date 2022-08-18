@@ -14,16 +14,16 @@ namespace RestaurantsAPI.DataFasades
         }
         public Kitchen Add(Kitchen element)
         {
-            dataBaseContext.Kitchen.Add(element);
+            dataBaseContext.Kitchens.Add(element);
             dataBaseContext.SaveChanges();
             return element;
         }
         public bool Delete(Guid id)
         {
-            Kitchen deleteElement = Get(id);
-            if (deleteElement != null)
+            Kitchen deleteKitchen = Get(id);
+            if (deleteKitchen != null)
             {
-                dataBaseContext.Kitchen.Remove(deleteElement);
+                dataBaseContext.Kitchens.Remove(deleteKitchen);
                 dataBaseContext.SaveChanges();
                 return true;
             }
@@ -34,21 +34,21 @@ namespace RestaurantsAPI.DataFasades
         }
         public Kitchen Edit(Kitchen element)
         {
-            Kitchen existingRestoran = Get(element.Id);
+            Kitchen existingKitchen = Get(element.Id);
             if(element.NameKitchen !="")
             {
-                existingRestoran.NameKitchen = element.NameKitchen;
+                existingKitchen.NameKitchen = element.NameKitchen;
             }          
             dataBaseContext.SaveChanges();
-            return existingRestoran;
+            return existingKitchen;
         }
         public List<Kitchen> Get()
         {
-            return dataBaseContext.Kitchen.ToList();
+            return dataBaseContext.Kitchens.ToList();
         }
         public Kitchen Get(Guid id)
         {
-            return dataBaseContext.Kitchen.SingleOrDefault(x => x.Id == id);
+            return dataBaseContext.Kitchens.SingleOrDefault(x => x.Id == id);
         }
     }
 }

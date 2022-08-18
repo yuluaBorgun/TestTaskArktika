@@ -1,4 +1,5 @@
-﻿using RestaurantsAPI.Migrations;
+﻿using Microsoft.EntityFrameworkCore;
+using RestaurantsAPI.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,16 @@ namespace RestaurantsAPI.DataFasades
         }
         public Restaurant Add(Restaurant element)
         {
-            dataBaseContext.Restaurant.Add(element);
+            dataBaseContext.Restaurants.Add(element);
             dataBaseContext.SaveChanges();
             return element;
         }
         public bool Delete(Guid id)
         {
-            Restaurant deleteElement = Get(id);
-            if (deleteElement != null)
+            Restaurant deleteRestaurant = Get(id);
+            if (deleteRestaurant != null)
             {
-                dataBaseContext.Restaurant.Remove(deleteElement);
+                dataBaseContext.Restaurants.Remove(deleteRestaurant);
                 dataBaseContext.SaveChanges();
                 return true;
             }
@@ -34,41 +35,41 @@ namespace RestaurantsAPI.DataFasades
         }
         public Restaurant Edit(Restaurant element)
         {
-            Restaurant existingRestoran = Get(element.Id);
+            Restaurant existingRestaurant = Get(element.Id);
             if (!string.IsNullOrWhiteSpace(element.Name))
             {
-                existingRestoran.Name = element.Name;
+                existingRestaurant.Name = element.Name;
             }
             if (element.OpenTime != null)
             {
-                existingRestoran.OpenTime = element.OpenTime;
+                existingRestaurant.OpenTime = element.OpenTime;
             }       
             if (element.CloseTime != null)
             {
-                existingRestoran.CloseTime = element.CloseTime;
+                existingRestaurant.CloseTime = element.CloseTime;
             }
             if (!string.IsNullOrWhiteSpace(element.Address))
             {
-                existingRestoran.Address = element.Address;
+                existingRestaurant.Address = element.Address;
             }
             if (element.Rating != null)
             {
-                existingRestoran.Rating = element.Rating;
+                existingRestaurant.Rating = element.Rating;
             }
-            if (dataBaseContext.Kitchen.FirstOrDefault(k => k.Id == element.KitchenID) != null || element.KitchenID == Guid.Empty)
+            if (dataBaseContext.Kitchens.FirstOrDefault(k => k.Id == element.KitchenID) != null || element.KitchenID == Guid.Empty)
             {
-                existingRestoran.KitchenID = element.KitchenID;
+                existingRestaurant.KitchenID = element.KitchenID;
             }
             dataBaseContext.SaveChanges();
-            return existingRestoran;          
+            return existingRestaurant;          
         }
         public List<Restaurant> Get()
         {
-            return dataBaseContext.Restaurant.ToList();        
+            return dataBaseContext.Restaurants.Include(r=>r.Kitchen).ToList();        
         }
         public Restaurant Get(Guid id)
         {
-            return dataBaseContext.Restaurant.SingleOrDefault(x => x.Id == id);
+            return dataBaseContext.Restaurants.Include(r => r.Kitchen).SingleOrDefault(x => x.Id == id);
         }
     }
 }

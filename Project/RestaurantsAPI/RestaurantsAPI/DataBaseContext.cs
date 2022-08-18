@@ -7,8 +7,8 @@ namespace RestaurantsAPI
     public class DataBaseContext: DbContext
     {
         public DataBaseContext(DbContextOptions<DataBaseContext> opt) : base(opt) { }
-        public DbSet<Restaurant> Restaurant { get; set; }
-        public DbSet<Kitchen> Kitchen { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Kitchen> Kitchens { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Restaurant>()

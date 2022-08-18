@@ -9,66 +9,66 @@ namespace RestaurantsAPI.Controllers
     [ApiController]
     public class RestaurantController : ControllerBase
     {
-        private ICRUDdbOperations<Restaurant> operation;
-        public RestaurantController(ICRUDdbOperations<Restaurant> restoranData)
+        private ICRUDdbOperations<Restaurant> operations;
+        public RestaurantController(ICRUDdbOperations<Restaurant> restaurantData)
         {
-            operation = restoranData;            
+            operations = restaurantData;            
         }
         [HttpGet]
         [Route("[controller]")]
-        public IActionResult GetRestorans()//many
+        public IActionResult GetRestaurants()
         {
-            return Ok(operation.Get());
+            return Ok(operations.Get());
         }
 
         [HttpGet]
         [Route("[controller]/{id}")]
-        public IActionResult GetRestoran(Guid id)//one
+        public IActionResult GetRestaurant(Guid id)
         {
-            Restaurant restaurant = operation.Get(id);
+            Restaurant restaurant = operations.Get(id);
             if (restaurant != null)
             {
                 return Ok(restaurant);
             }
-            return NotFound($"Ресторан с таким id:{id} не найден");
+            return NotFound($"Ресторан с id:{id} не найден");
         }
 
         [HttpPost]
         [Route("[controller]")]
-        public IActionResult AddRestoran(Restaurant restaurant)
+        public IActionResult AddRestaurant(Restaurant restaurant)
         {
-            operation.Add(restaurant);
+            operations.Add(restaurant);
             return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + restaurant.Id,
               restaurant);
         }
 
         [HttpDelete]
         [Route("[controller]/{id}")]
-        public IActionResult DeleteRestoran(Guid id)
+        public IActionResult DeleteRestaurant(Guid id)
         {
-            Restaurant restaurant = operation.Get(id);
+            Restaurant restaurant = operations.Get(id);
             if (restaurant != null)
             {
-                operation.Delete(id);
+                operations.Delete(id);
                 return Ok();
             }
-            return NotFound($"Ресторан с таким id:{id} не найден");
+            return NotFound($"Ресторан с id:{id} не найден");
         }
 
         [HttpPatch]
         [Route("[controller]/{id}")]
-        public IActionResult EditRestoran(Guid id, Restaurant restaurant)
+        public IActionResult EditRestaurant(Guid id, Restaurant restaurant)
         {
-            Restaurant existingRestoren = operation.Get(id);
-            if (existingRestoren != null)
+            Restaurant existingRestaurant = operations.Get(id);
+            if (existingRestaurant != null)
             {
-                restaurant.Id = existingRestoren.Id;
-                operation.Edit(restaurant);
+                restaurant.Id = existingRestaurant.Id;
+                operations.Edit(restaurant);
                 return Ok();
             }
             else
             {
-                return NotFound($"Ресторан с таким id:{id} не найден");
+                return NotFound($"Ресторан с id:{id} не найден");
             }
         }
     }

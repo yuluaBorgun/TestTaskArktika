@@ -9,66 +9,66 @@ namespace RestaurantsAPI.Controllers
     [ApiController]
     public class KitchenController : ControllerBase
     {
-        private ICRUDdbOperations<Kitchen> operation;
+        private ICRUDdbOperations<Kitchen> operations;
         public KitchenController(ICRUDdbOperations<Kitchen> KitchenData)
         {
-            operation = KitchenData;
+            operations = KitchenData;
         }
         [HttpGet]
         [Route("[controller]")]
         public IActionResult GetKitchens()
         {
-            return Ok(operation.Get());
+            return Ok(operations.Get());
         }
 
         [HttpGet]
         [Route("[controller]/{id}")]
         public IActionResult GetKitchen(Guid id)
         {
-            Kitchen kitchen = operation.Get(id);
+            Kitchen kitchen = operations.Get(id);
             if (kitchen != null)
             {
                 return Ok(kitchen);
             }
-            return NotFound($"Кухня с таким id:{id} не найден");
+            return NotFound($"Кухня с id:{id} не найдена");
         }
 
         [HttpPost]
         [Route("[controller]")]
-        public IActionResult AddKitceh(Kitchen kitchen)
+        public IActionResult AddKitcen(Kitchen kitchen)
         {
-            operation.Add(kitchen);
+            operations.Add(kitchen);
             return Created(HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + kitchen.Id,
               kitchen);
         }
 
         [HttpDelete]
         [Route("[controller]/{id}")]
-        public IActionResult DeleteKitceh(Guid id)
+        public IActionResult DeleteKitcen(Guid id)
         {
-            Kitchen kitceh = operation.Get(id);
-            if (kitceh != null)
+            Kitchen kitcen = operations.Get(id);
+            if (kitcen != null)
             {
-                operation.Delete(id);
+                operations.Delete(id);
                 return Ok();
             }
-            return NotFound($"Кухня с таким id:{id} не найден");
+            return NotFound($"Кухня с id:{id} не найдена");
         }
 
         [HttpPatch]
         [Route("[controller]/{id}")]
         public IActionResult EditKitchen(Guid id, Kitchen kitchen)
         {
-            Kitchen existingKitchen = operation.Get(id);
+            Kitchen existingKitchen = operations.Get(id);
             if (existingKitchen != null)
             {
                 kitchen.Id = existingKitchen.Id;
-                operation.Edit(kitchen);
+                operations.Edit(kitchen);
                 return Ok(kitchen);
             }
             else
             {
-                return NotFound($"Кухня с таким id:{id} не найден");
+                return NotFound($"Кухня с id:{id} не найдена");
             }
         }
     }
