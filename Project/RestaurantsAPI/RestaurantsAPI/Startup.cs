@@ -4,14 +4,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using RestaurantsAPI.DataFasades;
 using RestaurantsAPI.Migrations;
 using RestaurantsAPI.Models;
 
+
 namespace RestaurantsAPI
 {
     public class Startup
-    {
+    {      
         public Startup(IConfiguration configuration)
         {
             Configuration = new RestaurantConfiguration(configuration);
@@ -19,7 +21,7 @@ namespace RestaurantsAPI
         public RestaurantConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddTransient<ICRUDdbOperations<Restaurant>, RestaurantFasad>();
             services.AddTransient<ICRUDdbOperations<Kitchen>, KitchenFasad>();
             services.AddDbContext<DataBaseContext>(opt => {

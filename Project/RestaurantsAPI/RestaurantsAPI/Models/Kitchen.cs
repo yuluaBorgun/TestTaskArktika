@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace RestaurantsAPI.Models
 {
@@ -12,7 +11,6 @@ namespace RestaurantsAPI.Models
         [Required]
         [MaxLength(200)]
         public string NameKitchen { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Restaurant> Restaurants { get; set; }
     }
 }

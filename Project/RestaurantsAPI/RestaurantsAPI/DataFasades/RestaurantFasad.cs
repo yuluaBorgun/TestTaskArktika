@@ -67,7 +67,7 @@ namespace RestaurantsAPI.DataFasades
         }
         public List<Restaurant> Get()
         {
-            return dataBaseContext.Restaurants.Include(r=>r.Kitchen).ToList();        
+           return dataBaseContext.Restaurants.Include(r=>r.Kitchen).ToList();
         }
         public Restaurant Get(Guid id)
         {

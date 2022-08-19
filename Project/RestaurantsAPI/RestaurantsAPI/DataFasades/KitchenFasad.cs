@@ -1,4 +1,5 @@
-﻿using RestaurantsAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using RestaurantsAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,7 @@ namespace RestaurantsAPI.DataFasades
         }
         public List<Kitchen> Get()
         {
-            return dataBaseContext.Kitchens.ToList();
+            return dataBaseContext.Kitchens.Include(k => k.Restaurants).ToList();
         }
         public Kitchen Get(Guid id)
         {
