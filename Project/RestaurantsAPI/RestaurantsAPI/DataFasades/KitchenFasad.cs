@@ -18,17 +18,27 @@ namespace RestaurantsAPI.DataFasades
             dataBaseContext.SaveChanges();
             return element;
         }
-        public bool Delete(Guid id)
+        public bool Delete(Guid id,out string errorMessage)
         {
             Kitchen deleteKitchen = Get(id);
             if (deleteKitchen != null)
             {
-                dataBaseContext.Kitchens.Remove(deleteKitchen);
-                dataBaseContext.SaveChanges();
-                return true;
+                if (dataBaseContext.Restaurants.FirstOrDefault(k => k.KitchenID == id) != null)
+                {
+                    errorMessage = "Присутствуют связные записи в таблице Restaurant. Удаление отменено";
+                    return false;
+                }
+                else
+                {
+                    dataBaseContext.Kitchens.Remove(deleteKitchen);
+                    dataBaseContext.SaveChanges();
+                    errorMessage = null;
+                    return true;
+                }               
             }
             else
             {
+                errorMessage = $"Кухня с id:{id} не найдена";
                 return false;
             }
         }

@@ -19,17 +19,19 @@ namespace RestaurantsAPI.DataFasades
             dataBaseContext.SaveChanges();
             return element;
         }
-        public bool Delete(Guid id)
+        public bool Delete(Guid id, out string errorMessage)
         {
             Restaurant deleteRestaurant = Get(id);
             if (deleteRestaurant != null)
             {
                 dataBaseContext.Restaurants.Remove(deleteRestaurant);
                 dataBaseContext.SaveChanges();
+                errorMessage = null;
                 return true;
             }
             else
             {
+                errorMessage = $"Ресторан с id:{id} не найден";
                 return false;
             }
         }

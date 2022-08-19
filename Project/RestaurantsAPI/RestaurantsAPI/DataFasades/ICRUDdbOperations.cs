@@ -8,7 +8,7 @@ namespace RestaurantsAPI.DataFasades
         List<T> Get();
         T Get(Guid id);
         T Add(T element);
-        bool Delete(Guid id);
+        bool Delete(Guid id,out string errorMessage);
         T Edit(T element);
     }
 }

@@ -49,8 +49,14 @@ namespace RestaurantsAPI.Controllers
             Restaurant restaurant = operations.Get(id);
             if (restaurant != null)
             {
-                operations.Delete(id);
-                return Ok();
+                if(operations.Delete(id, out string errorMessage))
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return Problem(errorMessage);
+                }
             }
             return NotFound($"Ресторан с id:{id} не найден");
         }

@@ -49,8 +49,14 @@ namespace RestaurantsAPI.Controllers
             Kitchen kitcen = operations.Get(id);
             if (kitcen != null)
             {
-                operations.Delete(id);
-                return Ok();
+                if (operations.Delete(id, out string errorMessage))
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return Problem(errorMessage);
+                }
             }
             return NotFound($"Кухня с id:{id} не найдена");
         }
